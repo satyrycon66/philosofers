@@ -6,7 +6,7 @@
 /*   By: siroulea <siroulea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:23:24 by siroulea          #+#    #+#             */
-/*   Updated: 2024/02/07 16:01:59 by siroulea         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:02:35 by siroulea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ typedef struct s_stack
 	pthread_t       tid;
 	int				index; 
     int             nbr_of_eat; 
+    int             die_time;
+    int             eat_time;
+    int             sleep_time;
     bool			alive;
-    
 	struct s_stack	*next;
-  
-
+    
 }					t_stack;
 
 typedef struct s_data
@@ -35,7 +36,7 @@ typedef struct s_data
     int time_to_eat;
     int time_to_sleep;
     int number_of_times_each_philosopher_must_eat;
-
+    
 }					t_data;
 
 //Utils

@@ -6,7 +6,7 @@
 /*   By: siroulea <siroulea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:38:54 by siroulea          #+#    #+#             */
-/*   Updated: 2024/02/07 16:29:24 by siroulea         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:12:03 by siroulea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void init_data(char **argv)
     
 }
 
-t_stack	*creat_struct(t_stack	*head)
+t_stack	*init_philo(t_stack	*head)
 {
 	 t_data	*data;
      data = get_data();
@@ -69,10 +69,16 @@ t_stack	*creat_struct(t_stack	*head)
 	current = head;
 	while (i < data->nbr_philo +1)
 	{
+		current->alive = true;
+		current->nbr_of_eat = 0;
+		current->die_time = 0;
+		current->eat_time = 0;
+		current->sleep_time = 0;
 		current->next = creat_node(i);
 		current = current->next;
 		i++;
 	}
+	current = NULL;
 	return (head);
 }
 
@@ -101,16 +107,16 @@ int main(int argc ,char **argv)
     if(argc == 5 || argc == 6)
     {
         init_data(argv);
-        head = creat_struct(head);
+        head = init_philo(head);
         
         current = head;  
         
-        while(current->alive ==  true)
+        while(current)
         {
             printf("%d\n",current->index);
-			if (current->next == NULL)
-			current = head;
-			else
+			// if (current->next == NULL)
+			// current = head;
+			// else
             current = current->next;
 			
         }
