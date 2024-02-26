@@ -116,5 +116,24 @@ int	ft_atoi(const char *str)
 	return (res);
 }
 
+long long	get_time(void)
+{
+	struct timeval	time;
 
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
 
+void	display(t_philo *philo, char *str)
+{
+	long long	time;
+	t_data *data;
+	data = get_data();
+
+	pthread_mutex_lock(&philo->data->display);
+	time = get_time() - philo->data->start_time;
+	if (philo->alive == true && philo->full == false && philo->data->stop == false
+		)
+		printf("%lld %d %s", time, philo->index, str);
+	pthread_mutex_unlock(&philo->data->display);
+}
