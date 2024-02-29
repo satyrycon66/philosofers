@@ -6,7 +6,7 @@
 /*   By: siroulea <siroulea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:21:00 by siroulea          #+#    #+#             */
-/*   Updated: 2024/02/05 16:42:05 by siroulea         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:43:25 by siroulea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,16 +124,43 @@ long long	get_time(void)
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
+// int chek_philo(void)
+// {
+// 	t_data *data;
+
+// 	data = get_data();
+// 	int i;
+// 		i = 0;
+// 			 while(i < data->nbr_philo)
+// 			 {
+// 				check_death(&data->philo[i] );
+// 				if(data->stop == true)
+// 				return (0);
+// 			i++;
+// 		}
+// 		return (1);
+// }
+
 void	display(t_philo *philo, char *str)
 {
 	long long	time;
+
 	t_data *data;
+
 	data = get_data();
 
-	pthread_mutex_lock(&philo->data->display);
+	pthread_mutex_lock(&data->display);
 	time = get_time() - philo->data->start_time;
-	if (philo->alive == true && philo->full == false && philo->data->stop == false
-		)
+	if(str[0] == 'D' && str[1] == 'e' && data->stop == false)
+	{
+		data->stop = true;
+		// philo->alive = false;
 		printf("%lld %d %s", time, philo->index, str);
-	pthread_mutex_unlock(&philo->data->display);
+	}
+	
+	else if (philo->alive == true && philo->full == false
+		&& data->stop == false   )
+		printf("%lld %d %s", time, philo->index, str);
+	
+	pthread_mutex_unlock(&data->display);
 }
