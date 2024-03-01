@@ -6,7 +6,7 @@
 /*   By: siroulea <siroulea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:23:24 by siroulea          #+#    #+#             */
-/*   Updated: 2024/03/01 12:58:48 by siroulea         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:54:59 by siroulea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_data
 	int				time_to_sleep;
 	long long		start_time;
 	bool			stop;
-	int				number_of_times_each_philosopher_must_eat;
+	int				nbr_of_time_each_philo_must_eat;
 	struct t_philo	*philo;
 	pthread_mutex_t	display;
 
@@ -50,9 +50,7 @@ typedef struct t_philo
 }					t_philo;
 
 // Utils
-char				*ft_itoa(int n);
 void				*ft_calloc(size_t count, size_t size);
-void				ft_bzero(void *b, size_t len);
 int					ft_atoi(const char *str);
 void				*routine(void *in);
 t_data				*get_data(void);
@@ -60,3 +58,5 @@ long long			get_time(void);
 void				ft_usleep(int ms, t_philo *philo);
 void				display(t_philo *philo, char *str);
 int					check_death(t_philo *philo);
+void				init_data(char **argv);
+int					*init_philo(void);

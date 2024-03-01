@@ -6,7 +6,7 @@
 /*   By: siroulea <siroulea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:49:42 by siroulea          #+#    #+#             */
-/*   Updated: 2024/03/01 13:08:20 by siroulea         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:55:04 by siroulea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	eating(t_philo *philo)
 	philo->start_eat_time = get_time();
 	philo->nbr_of_eat += 1;
 	ft_usleep(philo->eat_time, philo);
-	if (philo->nbr_of_eat == philo->data->number_of_times_each_philosopher_must_eat)
+	if (philo->nbr_of_eat == philo->data->nbr_of_time_each_philo_must_eat)
 		philo->full = true;
 	check_death(philo);
 	pthread_mutex_unlock(philo->other_fork);
