@@ -6,7 +6,7 @@
 /*   By: siroulea <siroulea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:23:24 by siroulea          #+#    #+#             */
-/*   Updated: 2024/03/01 13:54:59 by siroulea         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:30:51 by siroulea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,3 +60,4 @@ void				display(t_philo *philo, char *str);
 int					check_death(t_philo *philo);
 void				init_data(char **argv);
 int					*init_philo(void);
+int					ft_check_if_its_nbr(char **argv);

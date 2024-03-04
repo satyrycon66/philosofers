@@ -6,7 +6,7 @@
 /*   By: siroulea <siroulea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:38:54 by siroulea          #+#    #+#             */
-/*   Updated: 2024/03/01 13:46:48 by siroulea         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:44:53 by siroulea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,19 @@ int	ft_stop(t_data *data)
 	int	i;
 
 	i = 0;
+	pthread_mutex_destroy(&data->display);
+	
 	while (i < data->nbr_philo)
 	{
+		
+		pthread_mutex_destroy(&data->philo[i].own_fork) ;
+		
+		i++;
+	}
+	i = 0;
+	while (i < data->nbr_philo)
+	{
+		
 		if (pthread_join(data->philo[i].tid, NULL) != 0)
 			return (0);
 		i++;
@@ -69,9 +80,14 @@ int	main(int argc, char **argv)
 	t_data	*data;
 	int		i;
 
-	data = get_data();
 	if (argc == 5 || argc == 6)
 	{
+		if (ft_check_if_its_nbr(argv) == 0)
+		{
+			write(1, "wrong argv\n", 11);
+			return (0);
+		}
+		data = get_data();
 		init_data(argv);
 		init_philo();
 		thread_routine();
